@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Employee</title>
+    <style>
+        body {
+            background-color: {{ color }};
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add a New Employee</h1>
+    <form action="/addemp" method="POST">
+        <label>Employee ID:</label><br>
+        <input type="text" name="emp_id" required><br>
+
+        <label>First Name:</label><br>
+        <input type="text" name="first_name" required><br>
+
+        <label>Last Name:</label><br>
+        <input type="text" name="last_name" required><br>
+
+        <label>Primary Skill:</label><br>
+        <input type="text" name="primary_skill" required><br>
+
+        <label>Location:</label><br>
+        <input type="text" name="location" required><br>
+
+        <input type="submit" value="Add Employee">
+    </form>
+</body>
+</html>

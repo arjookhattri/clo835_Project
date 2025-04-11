@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Employee Information</title>
+    <style>
+        body {
+            background-color: {{ color }};
+            font-family: Avenir, sans-serif;
+            text-align: center;
+            padding: 60px;
+            color: black;
+        }
+
+        h1 {
+            color: DodgerBlue;
+        }
+
+        h2 {
+            color: grey;
+        }
+
+        input[type="number"] {
+            height: 25px;
+            font-size: 14pt;
+            width: 300px;
+        }
+
+        button {
+            background: grey;
+            height: 45px;
+            width: 200px;
+            color: white;
+            font-style: oblique;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Information</h1>
+    <form action="/fetchdata" method="POST" autocomplete="on">
+        <h2>Enter Employee ID</h2>
+        <input type="number" name="emp_id" required autofocus><br><br>
+        <button type="submit">FETCH INFO</button>
+    </form>
+</body>
+</html>
