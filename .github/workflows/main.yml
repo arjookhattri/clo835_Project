@@ -23,18 +23,16 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
           AWS_REGION: us-east-1
-
-      - name: Build, tag, and push images to Amazon ECR
+      
+      - name: Build, tag, push both Flask and MySQL images
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY_MYSQL: mysql-repo
-          ECR_REPOSITORY_WEBAPP: webapp-repo
-          IMAGE_TAG: v1
+          IMAGE_TAG: v1.0
         run: |
-          # Build images
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_MYSQL:$IMAGE_TAG -f Dockerfile_mysql .
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_WEBAPP:$IMAGE_TAG -f Dockerfile .
+          # Build Flask app
+            docker build -t $ECR_REGISTRY/webapp-repo:$IMAGE_TAG -f Dockerfile .
+            docker push $ECR_REGISTRY/webapp-repo:$IMAGE_TAG
 
-          # Push images to ECR
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY_MYSQL:$IMAGE_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY_WEBAPP:$IMAGE_TAG
+          # Build MySQL with init SQL
+          docker build -t $ECR_REGISTRY/mysql-repo:$IMAGE_TAG -f Dockerfile_mysql .
+          docker push $ECR_REGISTRY/mysql-repo:$IMAGE_TAG
